@@ -1,0 +1,59 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh; /* 設高度 100% 避免重複 */
+  background: linear-gradient(to left top, #e66465, #9198e5); /* 漸層用法 */
+}
+
+/* 光環 */
+.halo {
+  width: var(--radius);
+  height: var(--radius);
+  border-radius: 50%;
+  background-color: aquamarine;
+  position: absolute;
+
+  opacity: 0.15; /* 透明度 */
+  transform: scale(calc(var(--factor) * var(--scale))); /* 動畫放大 */
+}
+
+.halo:nth-of-type(1) {
+  --factor: 0.3;
+}
+
+.halo:nth-of-type(1) {
+  --factor: 0.5;
+}
+
+.halo:nth-of-type(1) {
+  --factor: 0.7;
+}
+
+/* 追蹤球 */
+#strace {
+  width: var(--radius);
+  height: var(--radius);
+  border-radius: 50%;
+  background-color: aquamarine;
+  position: absolute; /* 滑鼠絕對定位 */
+  /* 用 calc(var()* 1px) 換算座標 */
+  /* transform: translate(calc(var(--mouse-X) * 1px), calc(var(--mouse-Y) * 1px)); */
+  /* 校正 Strace 物件位置 */
+  transform: translate(
+    calc(var(--mouse-X) * 1px - var(--radius) / 2),
+    calc(var(--mouse-Y) * 1px - var(--radius) / 2)
+  );
+}
+
+/* 根目錄選取器 可設 Var (doc 裡的 變數為全域變數 ) */
+:root {
+  --mouse-X: ;
+  --mouse-Y: ;
+  --radius: 40px;
+  --factor: 1;
+  --scale: ;
+}
